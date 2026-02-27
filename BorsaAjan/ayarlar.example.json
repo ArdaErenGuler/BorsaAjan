@@ -1,0 +1,11 @@
+{
+    "GOOGLE_API_KEY": "BURAYA_API_ANAHTARI_GELECEK",
+    "TG_TOKEN": "BURAYA_TELEGRAM_BOT_TOKEN_GELECEK",
+    "TG_CHAT_ID": "BURAYA_CHAT_ID_GELECEK",
+    "STRATEJI": {
+        "RSI_AL_LIMIT": 99,
+        "MAX_FK": 100.0,
+        "MAX_PDDD": 10.0,
+        "MIN_ROE": -0.50
+    }
+}
