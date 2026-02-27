@@ -184,7 +184,6 @@ def ai_onayi_al(veri, haberler):
                 
     return False, "❌ Google API limiti aşılamadı (3 kez denendi). Bu tur pas geçiliyor."
 
-# --- YENİ EKLENEN: AI SATIŞ ONAYI FONKSİYONU ---
 def ai_satis_onayi_al(veri, alis_fiyati):
     kar_zarar = ((veri['fiyat'] - alis_fiyati) / alis_fiyati) * 100
     prompt = f"""Sen usta bir borsa analistisin. 
@@ -223,8 +222,7 @@ print("✅ Sistem Hazır! Piyasayı dinlemeye başlıyorum...\n")
 
 while True:
     print(f"\n[{datetime.now().strftime('%H:%M:%S')}] Yeni Tarama Döngüsü Başladı...")
-    
-    # --- YENİ EKLENEN KISIM: SATIŞ KONTROLÜ ---
+
     portfoy = portfoy_yukle()
     if portfoy:
         print("💼 Önce elde tutulan hisseler kontrol ediliyor...")
@@ -243,7 +241,7 @@ while True:
                     print(f"🛡️ AI Tut Dedi ({p_sembol})")
             time.sleep(2) # AI'yi yormamak için kısa bir mola
             
-        # Satılanları portföyden sil ve kaydet
+    
         for satilan in satilacaklar:
             del portfoy[satilan]
         if satilacaklar:
@@ -302,4 +300,5 @@ while True:
         print(f"\n🎯 Tarama Bitti: {tur_firsat_sayisi} adet sinyal gönderildi!")
         
     print(f"💤 5 dakika bekleniyor...\n")
+
     time.sleep(300)
