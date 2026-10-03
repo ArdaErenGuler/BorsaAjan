@@ -2,10 +2,39 @@
     "GOOGLE_API_KEY": "BURAYA_API_ANAHTARI_GELECEK",
     "TG_TOKEN": "BURAYA_TELEGRAM_BOT_TOKEN_GELECEK",
     "TG_CHAT_ID": "BURAYA_CHAT_ID_GELECEK",
+
+    "_not_strateji": "On filtre esikleri. Hisse bu kosullardan BIRINI bile ihlal ederse elenir ve AI'a hic sorulmaz. Eski ornek degerleri (RSI 99 / F-K 100 / ROE -0.50) neredeyse hicbir hisseyi elemiyordu: 98 hissenin 68'i AI'a gidiyor, Gemini gunluk ucretsiz kotasi 3 turda tukeniyordu.",
     "STRATEJI": {
-        "RSI_AL_LIMIT": 99,
-        "MAX_FK": 100.0,
-        "MAX_PDDD": 10.0,
-        "MIN_ROE": -0.50
-    }
+        "RSI_AL_LIMIT": 45,
+        "MAX_FK": 15.0,
+        "MAX_PDDD": 3.0,
+        "MIN_ROE": 0.15
+    },
+
+    "_not_veri": "Teknik veri ayarlari. GECMIS_PERIYODU en az 3mo olmali: 1mo ile 14 gunluk RSI isinmasi tamamlanmiyor ve deger ~3 puan sapiyor.",
+    "GECMIS_PERIYODU": "6mo",
+    "RSI_PERIYODU": 14,
+    "TEMEL_ONBELLEK_SAAT": 12,
+
+    "_not_filtre": "MIN_FK: F-K bu degerin altindaysa hisse elenir. Negatif F-K 'cok ucuz' demek degildir, sirketin zarar ettigi anlamina gelir. EKSIK_TEMEL_VERI_ELENSIN false ise, kaynaktan gelmeyen temel veri hisseyi elemez; AI'a 'bilinmiyor' olarak bildirilir. true yaparsan daha muhafazakar olursun ama yfinance 99 hissenin ~30'u icin F-K gondermedigi icin listenin ucte birini kaybedersin.",
+    "MIN_FK": 0.0,
+    "EKSIK_TEMEL_VERI_ELENSIN": false,
+
+    "_not_kota": "Gemini ucretsiz katmani dakikada ve gunde sinirlidir. Bu ayarlar botun kotayi tuketmesini engeller; sinir dolunca tarama o tur icin durur, bot olmez.",
+    "AI_MODEL": "gemini-2.5-flash",
+    "AI_MAX_ISTEK_TUR": 15,
+    "AI_MAX_ISTEK_GUN": 200,
+    "AI_DAKIKADA_ISTEK": 8,
+
+    "_not_dongu": "Piyasa saati disinda tarama yapilmaz: gece 03:00'te uretilen 'anlik fiyat' bir onceki kapanistir. Saatler Europe/Istanbul dilimine gore degerlendirilir.",
+    "DONGU_BEKLEME_SN": 300,
+    "HISSE_ARASI_BEKLEME_SN": 1.0,
+    "PIYASA_SAATI_ZORUNLU": true,
+    "PIYASA_ACILIS": "10:00",
+    "PIYASA_KAPANIS": "18:10",
+
+    "_not_portfoy": "Sanal portfoy. ZARAR_KES_YUZDE ve KAR_AL_YUZDE mekanik kurallardir: AI'a sorulmadan, kota bitmis olsa bile calisirlar.",
+    "PORTFOY_MAX_HISSE": 10,
+    "ZARAR_KES_YUZDE": -8.0,
+    "KAR_AL_YUZDE": 20.0
 }

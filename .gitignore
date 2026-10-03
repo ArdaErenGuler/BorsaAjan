@@ -1,0 +1,37 @@
+# Gercek API anahtarlari ve token burada: ASLA commit edilmez
+ayarlar.json
+**/ayarlar.json
+
+# Botun urettigi durum dosyalari
+portfoy.json
+durum.json
+temel_onbellek.json
+**/portfoy.json
+**/durum.json
+**/temel_onbellek.json
+*.bozuk
+*.tmp
+
+# Onleyici: anahtar ve sertifika dosyalari
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+secrets.json
+credentials.json
+service_account.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Isletim sistemi
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,10 @@
+# BorsaAjan bagimliliklari
+#   py -m pip install -r requirements.txt
+#
+# Surumler alt sinirla verildi: bu surumlerden once google-genai paketi
+# farkli bir API yuzeyi kullaniyordu (genai.configure + GenerativeModel).
+yfinance>=0.2.40
+pandas>=2.0
+requests>=2.31
+feedparser>=6.0
+google-genai>=1.0
