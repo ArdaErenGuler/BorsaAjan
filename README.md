@@ -111,3 +111,7 @@ Hepsi betiğin kendi klasöründe oluşur ve `.gitignore`'dadır:
   Gelmeyen veri "bilinmiyor" olarak AI'a bildirilir, sessizce 0 sayılmaz.
 * Gemini ücretsiz katmanı dakikada ve günde sınırlıdır. Bot sınırı kendi takip
   eder; dolduğunda tarama o tur için durur, süreç ölmez.
+* **Temettü günü:** Hisse temettü dağıttığında fiyat temettü kadar düşer. Bot
+  yalnızca fiyat değişimine baktığı için bu düşüş zarar gibi görünür ve
+  `ZARAR_KES_YUZDE` eşiğini tetikleyebilir. Toplam getiri (fiyat + temettü)
+  hesaplanmıyor; yüksek verimli hisselerde eşiği buna göre ayarlayın.

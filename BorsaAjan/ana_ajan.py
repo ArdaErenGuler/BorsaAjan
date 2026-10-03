@@ -442,6 +442,11 @@ def teknik_veri_cek(sembol, ayarlar, onbellek):
     """
     try:
         hisse = yf.Ticker(sembol)
+        # auto_adjust bilerek varsayilanda (True) birakildi: temettu/bedelsiz
+        # sonrasi GECMIS barlar duzeltilir, en son bar duzeltilmez. Alis fiyati
+        # kaydedildigi gunun en son bariyla, guncel fiyat da en son barla
+        # alindigi icin kar/zarar ayni temelde kalir. auto_adjust=False yapmak
+        # RSI'a temettu gununde yapay bir bosluk sokar.
         df = hisse.history(period=str(ayarlar["GECMIS_PERIYODU"]), interval="1d")
     except Exception as e:
         gunluk(f"⚠️ {sembol}: fiyat gecmisi alinamadi ({e.__class__.__name__})")
