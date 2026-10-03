@@ -833,10 +833,15 @@ def portfoyu_gozden_gecir(portfoy, ayarlar, ai, onbellek, kuru):
     satilacaklar = []
     zarar_kes = sayi(ayarlar["ZARAR_KES_YUZDE"])
     kar_al = sayi(ayarlar["KAR_AL_YUZDE"])
+    bekleme = sayi(ayarlar["HISSE_ARASI_BEKLEME_SN"]) or 0.0
 
     for sembol, detay in list(portfoy.items()):
         veri = teknik_veri_cek(sembol, ayarlar, onbellek)
         if not veri:
+            # Veri alinamayan hissede de bekle: Yahoo hata vermeye basladiginda
+            # beklemesiz dongu saniyeler icinde onlarca istek atar ve IP
+            # sinirlamasina girmemize yol acar.
+            time.sleep(bekleme)
             continue
 
         alis = detay["alis_fiyati"]  # portfoy_yukle gecerliligini garanti etti
@@ -887,6 +892,7 @@ def firsat_tara(portfoy, ayarlar, durum, ai, onbellek, kuru, hisse_siniri, bu_tu
     elendi = 0
     atlandi = 0
     aday = 0
+    ardisik_hata = 0
 
     for sembol in liste:
         # Zaten elimizdeki hisseye tekrar alis sinyali gonderilmez; ayni turda
@@ -900,7 +906,16 @@ def firsat_tara(portfoy, ayarlar, durum, ai, onbellek, kuru, hisse_siniri, bu_tu
 
         veri = teknik_veri_cek(sembol, ayarlar, onbellek)
         if not veri:
+            # Beklemesiz continue, Yahoo tarafinda sorun cikinca 98 hisseye
+            # saniyeler icinde istek atmamiza yol aciyordu.
+            ardisik_hata += 1
+            time.sleep(bekleme)
+            if ardisik_hata >= 10:
+                gunluk("🛑 Ust uste 10 hissede veri alinamadi "
+                       "(Yahoo sinirlamasi olabilir), tarama durduruldu.")
+                break
             continue
+        ardisik_hata = 0
 
         nedenler = eleme_nedenleri(veri, ayarlar)
         if nedenler:
